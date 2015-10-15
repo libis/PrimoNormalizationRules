@@ -136,7 +136,7 @@ class XmlRulesParser
     puts 'generating CSV ...'
 
     CSV.open("rules/#{@rules_name}.csv", 'w') do |csv|
-      csv << %w(section field group behaviour type select if then)
+      csv << %w(disabled section field group behaviour type select if then)
       @rules.sort.each do |section, fields|
         fields.each do |field, rules|
           rules.each do |rule|
@@ -192,7 +192,7 @@ class XmlRulesParser
               end
             end
 
-            csv << [section, field, rule['group'], behaviour, rule['type'], create_data_content(rule), condition_if, condition_then]
+            csv << [rule['disable'], section, field, rule['group'], behaviour, rule['type'], create_data_content(rule), condition_if, condition_then]
           end
         end
 
